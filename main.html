@@ -1,0 +1,195 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Stef Yaegel</title>
+    <meta name="Stef Yaegel" content="Author" />
+    <meta name="description" content="Website description" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/png" href="pixelstef.png">
+  </head>
+  <body id="game_body">
+    <header>
+      <h1>Stef Yaegel</h1>
+    </header>
+
+    <div id="cursor">
+        <img id="cursorimg" src="mycontrollergrey.png" alt="" />
+     </div>
+
+     <button onClick="activateMenu()"> 
+      <img id="menubutton" src="menuicon.png" alt="Description" />
+    </button>
+        <nav>
+            <a class="typing" href="main.html">main ( )</a>
+            <span style="display:flex; margin-top: 10px;"></span> 
+            <a class="typing" href="projects.html">projects ( )</a>
+            <span style="display:flex; margin-top: 10px;"></span> 
+            <a class="typing" href="contact.html">contact ( )</a>
+            <span style="display:flex; padding-bottom: 275px;"></span> 
+            <a class="relaunchbutton" href="index.html">
+            <img id="relaunch" src="homeicon.png" alt="" />
+            </a>
+        </nav>
+
+
+    <div class="main_game">  
+        <div class="scrollable_content"> 
+            <div class="words_container"> 
+                <div class="words_LP" style="left: 795px;">ABOUT ME</div>
+                <div class="words_LP" id="startarrow" style="left: 1345px;">&gt</div>
+                <div class="words_LP" style="left: 2600px;">EDUCATION</div>
+                <div class="words_LP" id="startarrow" style="left: 3230px;">&gt</div>
+                <div class="words_LP" style="left: 3700px;">THE UNIVERSITY OF MIAMI</div>
+                <div class="words_LP" style="left: 5700px;">COMPUTER SCIENCE</div>
+                <div class="words_LP" style="left: 7100px;">MATH</div>
+                <div class="words_LP" style="left: 7700px;">INTERACTIVE MEDIA</div>
+                <div class="words_P" style="left: 10000px;">LANGUAGES</div>
+                <div class="words_P" id="startarrow" style="left: 10650px;">&gt</div>
+                <div class="words_P" style="left: 11200px;">JAVA</div>
+                <div class="words_P" style="left: 11700px;">C#</div>
+                <div class="words_P" style="left: 12000px;">C</div>
+                <div class="words_P" style="left: 12300px;">SWIFT</div>
+                <div class="words_P" style="left: 12900px;">PYTHON</div>
+                <div class="words_P" style="left: 13700px;">HTML/CSS</div>
+                <div class="words_DP" style="left: 15400px;">EXPERIENCE</div>      
+                <div class="words_DP" id="startarrow" style="left: 16100px;">&gt</div>
+                <div class="words_DP" style="left: 16700px;">AR/VR DEVELOPER @ VESL</div>
+                <div class="words_DP" style="left: 18500px;">KODE WITH KLOSSY</div>
+                <div class="words_DP" style="left: 20000px;">MOBILE APP DEV INSTRUCTOR</div>
+            </div>
+        </div>
+
+        <img id="instructions" src="newinstructions.gif" alt="" />
+
+        <div id="player">
+            <img id="playerimg" src="flippedstef.png" alt="" />
+        </div>
+    </div>
+
+        <div id="game_floor"></div>
+
+    <footer>
+    </footer>
+
+    <script>
+      
+      function move(event){
+        if (event.x >= window.innerWidth / 2){
+          document.getElementById("cursorimg").src= "mycontroller.png";
+        } else {
+          document.getElementById("cursorimg").src= "mycontrollergrey.png";
+        }
+
+        cursor.style.left = event.x + "px";
+        cursor.style.top = event.y + "px";
+        console.log(event);
+      }
+
+      window.onmousemove = move;
+
+      function activateMenu() {
+
+        document.body.classList.toggle('om')
+
+        var image = document.getElementById("menubutton");
+
+        if (document.body.classList.contains('om')) {
+          image.src = "whitemenu.png"
+        } else {
+          image.src = "menuicon.png"
+        }
+
+      }
+
+    document.addEventListener('keydown', function (event) {
+
+            let currentPos = window.scrollX;
+            var player = document.getElementById('playerimg');
+            var instructions = document.getElementById('instructions');
+
+            if (event.key === 'ArrowRight') {
+                window.scrollTo({left: currentPos + 50});
+                player.src = "flippedstef.png"
+            }
+
+            if (event.key === 'ArrowLeft') {
+                window.scrollTo({left: currentPos - 50});
+                player.src = "pixelstef.png"
+            }
+
+            if (currentPos >= 0 && currentPos <= 700) {
+                instructions.style.display = "inline";  
+            } else {
+                instructions.style.display = "none";  
+            }
+    });
+
+    window.onload = function() {
+        if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+        window.location.href = 'main.html';
+    } };
+
+    // for light purple words 
+    document.addEventListener("DOMContentLoaded", function () {
+    var words = document.querySelectorAll('.words_LP');
+
+    function checkWordPosition() {
+        words.forEach(word => {
+            const rect = word.getBoundingClientRect();
+            const triggerPoint = 700;
+
+            if (rect.right < triggerPoint) {
+                word.style.color = 'rgb(158, 102, 249)'; 
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkWordPosition);
+    });
+
+    // for purple words
+
+    document.addEventListener("DOMContentLoaded", function () {
+    var words = document.querySelectorAll('.words_P');
+
+    function checkWordPositionP() {
+        words.forEach(word => {
+            const rect = word.getBoundingClientRect();
+            const triggerPoint = 700;
+
+            if (rect.right < triggerPoint) {
+                word.style.color = 'rgb(135, 63, 252)'; 
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkWordPositionP);
+    });
+
+  // for dark purple words
+    document.addEventListener("DOMContentLoaded", function () {
+    var words = document.querySelectorAll('.words_DP');
+
+    function checkWordPositionDP() {
+        words.forEach(word => {
+            const rect = word.getBoundingClientRect();
+            const triggerPoint = 700;
+
+            if (rect.right < triggerPoint) {
+                word.style.color = 'rgb(107, 19, 249)'; 
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkWordPositionDP);
+    });
+
+    
+
+
+    </script>
+  </body>
+</html>
